@@ -8,7 +8,7 @@ runcmd:
   - echo "session required pam_limits.so" >> /etc/pam.d/common-session
   - cd /root
   - sudo apt-get -y install git
-  - git clone https://github.com/kiritbasu/training.git
+  - git clone https://github.com/crwarman/training.git
   - cd training
   - chmod 744 *.sh
   - ./ubuntu-bootstrap.sh
