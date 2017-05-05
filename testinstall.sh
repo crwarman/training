@@ -48,9 +48,9 @@ echo ""
 echo "*****************"
 echo ""
 
-echo "Checking if JDBC Driver is intalled in SDC (prints mysql-connector-java-5.1.39-bin.jar if success)"
+echo "Checking if JDBC Driver is intalled in SDC (prints mysql-connector and postgresql jars if success)"
 echo "*****************"
-ls  /root/training/streamsets-datacollector-2.2.0.0/libs-common-lib/streamsets-datacollector-jdbc-lib/lib
+ls  /root/training/streamsets-datacollector-2.5.0.0/libs-common-lib/streamsets-datacollector-jdbc-lib/lib
 
 echo ""
 echo "*****************"
