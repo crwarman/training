@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ## Setup a basic Ubuntu 16 box with stuff needed to run StreamSets Demo Environment
+ulimit -a
 
 ## Update your package manager.
 sudo apt-get update
