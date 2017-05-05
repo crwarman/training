@@ -15,16 +15,16 @@ Can monitor setup by logging in as `root@<IP ADDR>` and running
   * Redis
   * MySQL & drivers
   * Postgres & drivers
-  * Kafka - Note: Need to manually start
+  * Kafka
   * Maven
   * Elastic / Kibana
   * Streamsets + JDBC drivers
   * Docker
   * CDH (via Clusterdock)
   * Hive config (copy_hive_conf.sh)
-- Can run [testinstall.sh](testinstall.sh) script to validate cluster configuration
+- Can run [testinstall.sh](testinstall.sh) script to validate cluster configuration - this can be done by running:
+  `~/training/testinstall.sh`
 - The [importsamples.sh](importsamples.sh) script can be used to import the sample pipelines into SDC
   * Consider having students create a few pipelines first 
   * Later they can run this to import the pipelines 
   * Note that the pipeline JSONs are in the [samples folder](samples)
-- Will need to manually start Kafka
