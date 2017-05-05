@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Setup a basic Ubuntu 16 box with stuff needed to run StreamSets Demo Environment
-ulimit -a
+ulimit -a > /tmp/ulimit.log
 
 ## Update your package manager.
 sudo apt-get update
