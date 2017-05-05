@@ -8,7 +8,7 @@ Create Droplet:
 - At that point click "create" and the system provisioning will begin
 
 
-Can monitor setup by logging in as root@<IP ADDR> and running 
+Can monitor setup by logging in as `root@<IP ADDR>` and running 
 `tail -f /var/log/cloud-init-output.log`
 - Will take a good 15mins or so to run through the process
 - Note that the [ubuntu-bootstrap.sh](https://github.com/crwarman/training/blob/master/ubuntu-bootstrap.sh) script is being run as well, which installs:
