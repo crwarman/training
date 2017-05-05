@@ -108,7 +108,6 @@ sudo dpkg -i kibana-5.0.1-amd64.deb
 sudo systemctl enable kibana.service
 sudo systemctl start kibana.service
 
-
 #download and extract StreamSets
 wget https://archives.streamsets.com/datacollector/2.5.0.0/tarball/streamsets-datacollector-all-2.5.0.0.tgz
 tar xvzf streamsets-datacollector-all-2.5.0.0.tgz
@@ -121,6 +120,9 @@ git clone https://github.com/kiritbasu/Fake-Apache-Log-Generator.git
 
 #create kafka topic
 /root/kafka/bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic mytopic --partitions 1 --replication-factor 1
+
+#start SDC
+sudo nohup /root/training/streamsets-datacollector-2.5.0.0/bin/streamsets dc & 
 
 #install docker
 curl -sSL https://get.docker.com/ | sh
