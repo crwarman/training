@@ -1,3 +1,4 @@
+!#/usr/bin/env bash
 ## Setup a basic Ubuntu 16 box with stuff needed to run StreamSets Demo Environment
 
 ## Update your package manager.
