@@ -66,10 +66,10 @@ sudo pip install mysql-python
 sudo pip install peewee
 
 #download MySQL Drivers
-wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.39.tar.gz
-tar xvzf mysql-connector-java-5.1.39.tar.gz
-cp mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar .
-rm -rf mysql-connector-java-5.1.39 mysql-connector-java-5.1.39.tar.gz
+wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.42.tar.gz
+tar xvzf mysql-connector-java-5.1.42.tar.gz
+cp mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar .
+rm -rf mysql-connector-java-5.1.42 mysql-connector-java-5.1.42.tar.gz
 
 #install postgres
 sudo apt-get install -y postgresql postgresql-contrib libpq-dev
@@ -77,7 +77,7 @@ sudo apt-get install -y postgresql postgresql-contrib libpq-dev
 sudo pip install psycopg2
 
 #download postgres Drivers
-wget https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar
+wget https://jdbc.postgresql.org/download/postgresql-42.0.0.jar
 
 #setup databases
 ./setup_rdbms.sh
@@ -110,8 +110,8 @@ sudo systemctl start kibana.service
 
 
 #download and extract StreamSets
-wget https://archives.streamsets.com/datacollector/2.2.0.0/tarball/streamsets-datacollector-all-2.2.0.0.tgz
-tar xvzf streamsets-datacollector-all-2.2.0.0.tgz
+wget https://archives.streamsets.com/datacollector/2.5.0.0/tarball/streamsets-datacollector-all-2.5.0.0.tgz
+tar xvzf streamsets-datacollector-all-2.5.0.0.tgz
 
 #install jdbc drivers to sdc
 ./install_jdbc_drivers.sh
