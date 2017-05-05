@@ -11,7 +11,7 @@ runcmd:
   - git clone https://github.com/crwarman/training.git
   - cd training
   - chmod 744 *.sh
-  - . ./ubuntu-bootstrap.sh
+  - sudo sh -c "ulimit -H -n 64000 && ulimit -n 40000 && /root/training/ubuntu-bootstrap.sh"
   #copy Hive config files
   - ./copy_hive_conf.sh
 final_message: "The system is finally up, after $UPTIME seconds"
