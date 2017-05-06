@@ -28,5 +28,5 @@ Can monitor setup by logging in as `root@<IP ADDR>`  with password str3ams3ts an
   * Consider having students create a few pipelines first 
   * Later they can run this to import the pipelines 
   * Note that the pipeline JSONs are in the [samples folder](samples)
-- Cloudera manager is accessible at http://<IP ADDR>:32769 as admin/admin
-- Hue is accessible at http://<IP ADDR>:32768 as hue/hue
+- Cloudera manager is accessible at `http://<IP ADDR>:32769` as admin/admin
+- Hue is accessible at `http://<IP ADDR>:32768` as hue/hue
