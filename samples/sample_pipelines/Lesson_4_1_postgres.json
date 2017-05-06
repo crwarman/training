@@ -1,9 +1,11 @@
 {
   "pipelineConfig" : {
-    "schemaVersion" : 2,
-    "version" : 5,
-    "uuid" : "14db5297-b2af-4d32-a0bf-418da4e430fd",
+    "schemaVersion" : 3,
+    "version" : 6,
+    "pipelineId" : "DEMO_Lesson_4_1",
+    "title" : "DEMO_Lesson_4_1",
     "description" : "",
+    "uuid" : "84d74193-d6ed-41a7-9dc2-e5bde9e3ed4d",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -55,13 +57,19 @@
     }, {
       "name" : "rateLimit",
       "value" : 0
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "maxRunners",
+      "value" : 0
     } ],
     "uiInfo" : {
       "previewConfig" : {
         "previewSource" : "CONFIGURED_SOURCE",
         "batchSize" : 10,
         "timeout" : 10000,
-        "writeToDestinations" : false,
+        "writeToDestinations" : true,
         "showHeader" : false,
         "showFieldType" : true,
         "rememberMe" : false
@@ -71,7 +79,7 @@
       "instanceName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01",
       "library" : "streamsets-datacollector-jdbc-lib",
       "stageName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource",
-      "stageVersion" : "8",
+      "stageVersion" : "9",
       "configuration" : [ {
         "name" : "isIncrementalMode",
         "value" : true
@@ -156,6 +164,15 @@
       }, {
         "name" : "hikariConfigBean.transactionIsolation",
         "value" : "DEFAULT"
+      }, {
+        "name" : "disableValidation",
+        "value" : false
+      }, {
+        "name" : "commonSourceConfigBean.numSQLErrorRetries",
+        "value" : 0
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
       } ],
       "uiInfo" : {
         "description" : "",
@@ -286,6 +303,9 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "fieldAttributeConfigs",
+        "value" : [ ]
       } ],
       "uiInfo" : {
         "description" : "",
@@ -345,6 +365,12 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "initScript",
+        "value" : "#\n# Available Objects:\n#\n#  state: a dict that is preserved between invocations of this script. \n#         Useful for caching bits of data e.g. counters.\n#\n#  log.<loglevel>(msg, obj...): use instead of print to send log messages to the log4j log instead of stdout.\n#                               loglevel is any log4j level: e.g. info, error, warn, trace.\n#\n# state['connection'] = Connection().open()\n\n"
+      }, {
+        "name" : "destroyScript",
+        "value" : "#\n# Available Objects:\n#\n#  state: a dict that is preserved between invocations of this script. \n#         Useful for caching bits of data e.g. counters.\n#\n#  log.<loglevel>(msg, obj...): use instead of print to send log messages to the log4j log instead of stdout.\n#                               loglevel is any log4j level: e.g. info, error, warn, trace.\n#\n# state['connection'].close()\n\n"
       } ],
       "uiInfo" : {
         "description" : "",
@@ -526,18 +552,20 @@
       "eventLanes" : [ ]
     },
     "info" : {
-      "name" : "DEMO_Lesson_4_1",
+      "pipelineId" : "DEMO_Lesson_4_1_postgres",
+      "title" : "DEMO_Lesson_4_1",
       "description" : "",
-      "created" : 1483327744158,
-      "lastModified" : 1483328276729,
+      "created" : 1494069371702,
+      "lastModified" : 1494074800391,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "14db5297-b2af-4d32-a0bf-418da4e430fd",
+      "uuid" : "84d74193-d6ed-41a7-9dc2-e5bde9e3ed4d",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
-      }
+      },
+      "name" : "DEMO_Lesson_4_1_postgres"
     },
     "metadata" : {
       "labels" : [ ]
@@ -562,12 +590,14 @@
     "valid" : true,
     "issues" : {
       "issueCount" : 0,
-      "pipelineIssues" : [ ],
-      "stageIssues" : { }
+      "stageIssues" : { },
+      "pipelineIssues" : [ ]
     },
     "previewable" : true
   },
   "pipelineRules" : {
+    "schemaVersion" : 0,
+    "version" : 0,
     "metricsRuleDefinitions" : [ {
       "id" : "badRecordsAlertID",
       "alertText" : "High incidence of Error Records",
@@ -627,7 +657,8 @@
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "229b1a30-65da-4a2b-bf97-8a44b61057a9",
+    "uuid" : "e0832dc6-1674-47d2-8be6-99ba05604aa6",
+    "configuration" : null,
     "ruleIssues" : [ ]
   },
   "libraryDefinitions" : null

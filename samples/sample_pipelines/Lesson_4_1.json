@@ -1,9 +1,11 @@
 {
   "pipelineConfig" : {
-    "schemaVersion" : 2,
-    "version" : 5,
-    "uuid" : "c5974e85-7d5f-4b43-bcea-77689c22a288",
+    "schemaVersion" : 3,
+    "version" : 6,
+    "pipelineId" : "DEMO_Lesson_4_1",
+    "title" : "DEMO_Lesson_4_1",
     "description" : "",
+    "uuid" : "cd6892c9-06ef-4385-8c45-df7b7694ee90",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -55,13 +57,19 @@
     }, {
       "name" : "rateLimit",
       "value" : 0
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "maxRunners",
+      "value" : 0
     } ],
     "uiInfo" : {
       "previewConfig" : {
         "previewSource" : "CONFIGURED_SOURCE",
         "batchSize" : 10,
         "timeout" : 10000,
-        "writeToDestinations" : false,
+        "writeToDestinations" : true,
         "showHeader" : false,
         "showFieldType" : true,
         "rememberMe" : false
@@ -71,7 +79,7 @@
       "instanceName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01",
       "library" : "streamsets-datacollector-jdbc-lib",
       "stageName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource",
-      "stageVersion" : "8",
+      "stageVersion" : "9",
       "configuration" : [ {
         "name" : "isIncrementalMode",
         "value" : true
@@ -156,6 +164,15 @@
       }, {
         "name" : "hikariConfigBean.transactionIsolation",
         "value" : "DEFAULT"
+      }, {
+        "name" : "disableValidation",
+        "value" : false
+      }, {
+        "name" : "commonSourceConfigBean.numSQLErrorRetries",
+        "value" : 0
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
       } ],
       "uiInfo" : {
         "description" : "",
@@ -286,6 +303,9 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "fieldAttributeConfigs",
+        "value" : [ ]
       } ],
       "uiInfo" : {
         "description" : "",
@@ -345,6 +365,12 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "initScript",
+        "value" : "#\n# Available Objects:\n#\n#  state: a dict that is preserved between invocations of this script. \n#         Useful for caching bits of data e.g. counters.\n#\n#  log.<loglevel>(msg, obj...): use instead of print to send log messages to the log4j log instead of stdout.\n#                               loglevel is any log4j level: e.g. info, error, warn, trace.\n#\n# state['connection'] = Connection().open()"
+      }, {
+        "name" : "destroyScript",
+        "value" : "#\n# Available Objects:\n#\n#  state: a dict that is preserved between invocations of this script. \n#         Useful for caching bits of data e.g. counters.\n#\n#  log.<loglevel>(msg, obj...): use instead of print to send log messages to the log4j log instead of stdout.\n#                               loglevel is any log4j level: e.g. info, error, warn, trace.\n#\n# state['connection'].close()"
       } ],
       "uiInfo" : {
         "description" : "",
@@ -363,7 +389,7 @@
       "stageVersion" : "4",
       "configuration" : [ {
         "name" : "hdfsTargetConfigBean.hdfsUri",
-        "value" : "hdfs://localhost"
+        "value" : "hdfs://node-1.cluster"
       }, {
         "name" : "hdfsTargetConfigBean.hdfsUser",
         "value" : null
@@ -538,6 +564,9 @@
       }, {
         "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.checksumAlgorithm",
         "value" : "MD5"
+      }, {
+        "name" : "hdfsTargetConfigBean.skipOldTempFileRecovery",
+        "value" : false
       } ],
       "uiInfo" : {
         "description" : "",
@@ -568,18 +597,20 @@
       "eventLanes" : [ ]
     },
     "info" : {
-      "name" : "DEMO_Lesson_4_1",
+      "pipelineId" : "DEMO_Lesson_4_1",
+      "title" : "DEMO_Lesson_4_1",
       "description" : "",
-      "created" : 1480893341389,
-      "lastModified" : 1480898420955,
+      "created" : 1494074260378,
+      "lastModified" : 1494074495543,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "c5974e85-7d5f-4b43-bcea-77689c22a288",
+      "uuid" : "cd6892c9-06ef-4385-8c45-df7b7694ee90",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
-      }
+      },
+      "name" : "DEMO_Lesson_4_1"
     },
     "metadata" : {
       "labels" : [ ]
@@ -603,13 +634,15 @@
     },
     "valid" : true,
     "issues" : {
+      "issueCount" : 0,
       "stageIssues" : { },
-      "pipelineIssues" : [ ],
-      "issueCount" : 0
+      "pipelineIssues" : [ ]
     },
     "previewable" : true
   },
   "pipelineRules" : {
+    "schemaVersion" : 0,
+    "version" : 0,
     "metricsRuleDefinitions" : [ {
       "id" : "badRecordsAlertID",
       "alertText" : "High incidence of Error Records",
@@ -669,7 +702,8 @@
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "991b6c36-a89a-45f2-9231-386f1b4f3a75",
+    "uuid" : "05178c56-78c0-4170-aac6-a902337ce28f",
+    "configuration" : null,
     "ruleIssues" : [ ]
   },
   "libraryDefinitions" : null

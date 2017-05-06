@@ -1,9 +1,11 @@
 {
   "pipelineConfig" : {
-    "schemaVersion" : 1,
-    "version" : 5,
-    "uuid" : "3a19281c-35c2-47c6-83fb-5bf7374a608b",
+    "schemaVersion" : 3,
+    "version" : 6,
+    "pipelineId" : "DEMO_Lesson_4",
+    "title" : "DEMO_Lesson_4_2",
     "description" : "",
+    "uuid" : "57d68463-1b08-47e8-8691-567cdc9d30a5",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -55,13 +57,19 @@
     }, {
       "name" : "rateLimit",
       "value" : 0
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "maxRunners",
+      "value" : 0
     } ],
     "uiInfo" : {
       "previewConfig" : {
         "previewSource" : "CONFIGURED_SOURCE",
         "batchSize" : 10,
         "timeout" : 10000,
-        "writeToDestinations" : false,
+        "writeToDestinations" : true,
         "showHeader" : false,
         "showFieldType" : true,
         "rememberMe" : false
@@ -71,7 +79,7 @@
       "instanceName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01",
       "library" : "streamsets-datacollector-jdbc-lib",
       "stageName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource",
-      "stageVersion" : "7",
+      "stageVersion" : "9",
       "configuration" : [ {
         "name" : "isIncrementalMode",
         "value" : true
@@ -85,20 +93,8 @@
         "name" : "offsetColumn",
         "value" : "id"
       }, {
-        "name" : "queryInterval",
-        "value" : "${10 * SECONDS}"
-      }, {
         "name" : "jdbcRecordType",
         "value" : "LIST_MAP"
-      }, {
-        "name" : "maxBatchSize",
-        "value" : 1000
-      }, {
-        "name" : "maxClobSize",
-        "value" : 1000
-      }, {
-        "name" : "maxBlobSize",
-        "value" : 1000
       }, {
         "name" : "txnIdColumnName",
         "value" : null
@@ -153,16 +149,41 @@
       }, {
         "name" : "stageOnRecordError",
         "value" : "TO_ERROR"
+      }, {
+        "name" : "commonSourceConfigBean.queryInterval",
+        "value" : "${10 * SECONDS}"
+      }, {
+        "name" : "commonSourceConfigBean.maxBatchSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.maxClobSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.maxBlobSize",
+        "value" : 1000
+      }, {
+        "name" : "disableValidation",
+        "value" : false
+      }, {
+        "name" : "commonSourceConfigBean.numSQLErrorRetries",
+        "value" : 0
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
+      }, {
+        "name" : "hikariConfigBean.transactionIsolation",
+        "value" : "DEFAULT"
       } ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 60,
-        "description" : "",
-        "stageType" : "SOURCE",
-        "label" : "JDBC Consumer 1"
+        "label" : "JDBC Consumer 1",
+        "stageType" : "SOURCE"
       },
       "inputLanes" : [ ],
-      "outputLanes" : [ "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01OutputLane14689045895370" ]
+      "outputLanes" : [ "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01OutputLane14689045895370" ],
+      "eventLanes" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_processor_kv_redis_RedisLookupDProcessor_01",
       "library" : "streamsets-datacollector-redis-lib",
@@ -210,14 +231,15 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 280,
-        "description" : "",
-        "stageType" : "PROCESSOR",
-        "label" : "Redis Lookup Processor 1"
+        "label" : "Redis Lookup Processor 1",
+        "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01OutputLane14689045895370" ],
-      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_kv_redis_RedisLookupDProcessor_01OutputLane14695980234890" ]
+      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_kv_redis_RedisLookupDProcessor_01OutputLane14695980234890" ],
+      "eventLanes" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_processor_jsonparser_JsonParserDProcessor_01",
       "library" : "streamsets-datacollector-basic-lib",
@@ -243,14 +265,15 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 500,
-        "description" : "",
-        "stageType" : "PROCESSOR",
-        "label" : "JSON Parser 1"
+        "label" : "JSON Parser 1",
+        "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_kv_redis_RedisLookupDProcessor_01OutputLane14695980234890" ],
-      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_jsonparser_JsonParserDProcessor_01OutputLane14695984575440" ]
+      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_jsonparser_JsonParserDProcessor_01OutputLane14695984575440" ],
+      "eventLanes" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor_01",
       "library" : "streamsets-datacollector-basic-lib",
@@ -280,16 +303,20 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "fieldAttributeConfigs",
+        "value" : [ ]
       } ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 720,
-        "description" : "",
-        "stageType" : "PROCESSOR",
-        "label" : "Expression Evaluator 1"
+        "label" : "Expression Evaluator 1",
+        "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_jsonparser_JsonParserDProcessor_01OutputLane14695984575440" ],
-      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor_01OutputLane14689058419930" ]
+      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor_01OutputLane14689058419930" ],
+      "eventLanes" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor_01",
       "library" : "streamsets-datacollector-basic-lib",
@@ -309,14 +336,15 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 940,
-        "description" : "",
-        "stageType" : "PROCESSOR",
-        "label" : "Field Remover 1"
+        "label" : "Field Remover 1",
+        "stageType" : "PROCESSOR"
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor_01OutputLane14689058419930" ],
-      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor_01OutputLane14689057157050" ]
+      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor_01OutputLane14689057157050" ],
+      "eventLanes" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_processor_hive_HiveMetadataDProcessor_01",
       "library" : "streamsets-datacollector-cdh_5_7-lib",
@@ -324,7 +352,7 @@
       "stageVersion" : "1",
       "configuration" : [ {
         "name" : "hiveConfigBean.hiveJDBCUrl",
-        "value" : "jdbc:hive2://localhost:10000/default"
+        "value" : "jdbc:hive2://node-1.cluster:10000/default"
       }, {
         "name" : "hiveConfigBean.hiveJDBCDriver",
         "value" : "org.apache.hive.jdbc.HiveDriver"
@@ -373,25 +401,29 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "timeZoneID",
+        "value" : "UTC"
       } ],
       "uiInfo" : {
-        "yPos" : 48.9248046875,
-        "xPos" : 1158.9248046875,
         "outputStreamLabels" : [ "Data", "Metadata" ],
-        "description" : "",
+        "yPos" : 48.9248046875,
         "stageType" : "PROCESSOR",
+        "description" : "",
+        "xPos" : 1158.9248046875,
         "label" : "Hive Metadata 1"
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor_01OutputLane14689057157050" ],
-      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_hive_HiveMetadataDProcessor_01OutputLane14695990241870", "com_streamsets_pipeline_stage_processor_hive_HiveMetadataDProcessor_01OutputLane14695990241871" ]
+      "outputLanes" : [ "com_streamsets_pipeline_stage_processor_hive_HiveMetadataDProcessor_01OutputLane14695990241870", "com_streamsets_pipeline_stage_processor_hive_HiveMetadataDProcessor_01OutputLane14695990241871" ],
+      "eventLanes" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_destination_hdfs_HdfsDTarget_01",
       "library" : "streamsets-datacollector-cdh_5_7-lib",
       "stageName" : "com_streamsets_pipeline_stage_destination_hdfs_HdfsDTarget",
-      "stageVersion" : "3",
+      "stageVersion" : "4",
       "configuration" : [ {
         "name" : "hdfsTargetConfigBean.hdfsUri",
-        "value" : "hdfs://localhost"
+        "value" : "hdfs://node-1.cluster"
       }, {
         "name" : "hdfsTargetConfigBean.hdfsUser",
         "value" : null
@@ -495,9 +527,6 @@
         "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textEmptyLineIfNull",
         "value" : false
       }, {
-        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchemaInHeader",
-        "value" : true
-      }, {
         "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchema",
         "value" : null
       }, {
@@ -521,16 +550,68 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchemaSource",
+        "value" : "HEADER"
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.registerSchema",
+        "value" : false
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
+        "value" : [ ]
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaRegistryUrls",
+        "value" : [ ]
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaLookupMode",
+        "value" : "AUTO"
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.subject",
+        "value" : ""
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.subjectToRegister",
+        "value" : ""
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.schemaId",
+        "value" : 0
+      }, {
+        "name" : "hdfsTargetConfigBean.fileNameSuffix",
+        "value" : null
+      }, {
+        "name" : "hdfsTargetConfigBean.hdfsPermissionCheck",
+        "value" : true
+      }, {
+        "name" : "hdfsTargetConfigBean.permissionEL",
+        "value" : null
+      }, {
+        "name" : "hdfsTargetConfigBean.skipOldTempFileRecovery",
+        "value" : false
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.textRecordSeparator",
+        "value" : "\\n"
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.fileNameEL",
+        "value" : null
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.wholeFileExistsAction",
+        "value" : "TO_ERROR"
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.includeChecksumInTheEvents",
+        "value" : false
+      }, {
+        "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.checksumAlgorithm",
+        "value" : "MD5"
       } ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : -47.84156799316406,
         "xPos" : 1420.85693359375,
-        "description" : "",
-        "stageType" : "TARGET",
-        "label" : "Hadoop FS 1"
+        "label" : "Hadoop FS 1",
+        "stageType" : "TARGET"
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_hive_HiveMetadataDProcessor_01OutputLane14695990241870" ],
-      "outputLanes" : [ ]
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_destination_hive_HiveMetastoreDTarget_01",
       "library" : "streamsets-datacollector-cdh_5_7-lib",
@@ -538,7 +619,7 @@
       "stageVersion" : "1",
       "configuration" : [ {
         "name" : "conf.hiveConfigBean.hiveJDBCUrl",
-        "value" : "jdbc:hive2://localhost:10000/default"
+        "value" : "jdbc:hive2://node-1.cluster:10000/default"
       }, {
         "name" : "conf.hiveConfigBean.hiveJDBCDriver",
         "value" : "org.apache.hive.jdbc.HiveDriver"
@@ -574,14 +655,15 @@
         "value" : [ ]
       } ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 126.33792114257812,
         "xPos" : 1423.670166015625,
-        "description" : "",
-        "stageType" : "TARGET",
-        "label" : "Hive Metastore 1"
+        "label" : "Hive Metastore 1",
+        "stageType" : "TARGET"
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_processor_hive_HiveMetadataDProcessor_01OutputLane14695990241871" ],
-      "outputLanes" : [ ]
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
     } ],
     "errorStage" : {
       "instanceName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget_ErrorStage",
@@ -590,28 +672,31 @@
       "stageVersion" : "1",
       "configuration" : [ ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 280,
-        "description" : "",
-        "stageType" : "TARGET",
-        "label" : "Error Records - Discard"
+        "label" : "Error Records - Discard",
+        "stageType" : "TARGET"
       },
       "inputLanes" : [ ],
-      "outputLanes" : [ ]
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
     },
     "info" : {
-      "name" : "DEMO_Lesson_4",
+      "pipelineId" : "DEMO_Lesson_4_2",
+      "title" : "DEMO_Lesson_4_2",
       "description" : "",
-      "created" : 1469593459245,
-      "lastModified" : 1469599512201,
+      "created" : 1494069374283,
+      "lastModified" : 1494075172802,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "3a19281c-35c2-47c6-83fb-5bf7374a608b",
+      "uuid" : "57d68463-1b08-47e8-8691-567cdc9d30a5",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
-      }
+      },
+      "name" : "DEMO_Lesson_4_2"
     },
     "metadata" : {
       "labels" : [ ]
@@ -623,24 +708,27 @@
       "stageVersion" : "1",
       "configuration" : [ ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 280,
-        "description" : "",
-        "stageType" : "TARGET",
-        "label" : "Stats Aggregator - Discard"
+        "label" : "Stats Aggregator - Discard",
+        "stageType" : "TARGET"
       },
       "inputLanes" : [ ],
-      "outputLanes" : [ ]
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
     },
-    "previewable" : true,
     "valid" : true,
     "issues" : {
+      "issueCount" : 0,
       "stageIssues" : { },
-      "pipelineIssues" : [ ],
-      "issueCount" : 0
-    }
+      "pipelineIssues" : [ ]
+    },
+    "previewable" : true
   },
   "pipelineRules" : {
+    "schemaVersion" : 0,
+    "version" : 0,
     "metricsRuleDefinitions" : [ {
       "id" : "badRecordsAlertID",
       "alertText" : "High incidence of Error Records",
@@ -700,7 +788,11 @@
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "347c3516-0d84-4c75-85f1-1ed48fd7f1eb",
+    "uuid" : "7ad80f8e-283b-412b-9905-50fc4a363b06",
+    "configuration" : [ {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    } ],
     "ruleIssues" : [ ]
   },
   "libraryDefinitions" : null

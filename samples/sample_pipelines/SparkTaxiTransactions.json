@@ -1,9 +1,11 @@
 {
   "pipelineConfig" : {
-    "schemaVersion" : 2,
-    "version" : 5,
-    "uuid" : "071c5c0b-0da9-4760-8300-79f96f4aaf05",
+    "schemaVersion" : 3,
+    "version" : 6,
+    "pipelineId" : "Spark Taxi Transactions",
+    "title" : "Spark Taxi Transactions",
     "description" : "This pipeline writes taxi transaction data to Wave Analytics",
+    "uuid" : "e8dd484d-0d8d-4868-8287-e2bf62b4cb39",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -67,13 +69,19 @@
     }, {
       "name" : "databricksPath",
       "value" : "/sdc"
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "maxRunners",
+      "value" : 0
     } ],
     "uiInfo" : {
       "previewConfig" : {
         "previewSource" : "CONFIGURED_SOURCE",
         "batchSize" : "10",
         "timeout" : "30000",
-        "writeToDestinations" : false,
+        "writeToDestinations" : true,
         "showHeader" : true,
         "showFieldType" : true,
         "rememberMe" : false
@@ -83,7 +91,7 @@
       "instanceName" : "Directory_01",
       "library" : "streamsets-datacollector-basic-lib",
       "stageName" : "com_streamsets_pipeline_stage_origin_spooldir_SpoolDirDSource",
-      "stageVersion" : "8",
+      "stageVersion" : "9",
       "configuration" : [ {
         "name" : "conf.dataFormatConfig.compression",
         "value" : "NONE"
@@ -242,10 +250,10 @@
         "value" : "DELIMITED"
       }, {
         "name" : "conf.spoolDir",
-        "value" : "/Users/pat/Downloads/StreamSets-tutorial/tutorial/origin"
+        "value" : "/root/training/samples/data/"
       }, {
         "name" : "conf.filePattern",
-        "value" : "nyc_taxi_data_01.csv"
+        "value" : "nyc_taxi_data.csv"
       }, {
         "name" : "conf.useLastModified",
         "value" : "LEXICOGRAPHICAL"
@@ -285,6 +293,27 @@
       }, {
         "name" : "stageOnRecordError",
         "value" : "TO_ERROR"
+      }, {
+        "name" : "conf.pathMatcherMode",
+        "value" : "GLOB"
+      }, {
+        "name" : "conf.dataFormatConfig.csvEnableComments",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.csvCommentMarker",
+        "value" : "#"
+      }, {
+        "name" : "conf.dataFormatConfig.csvIgnoreEmptyLines",
+        "value" : true
+      }, {
+        "name" : "conf.dataFormatConfig.includeFieldXpathAttributes",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.outputFieldAttributes",
+        "value" : false
+      }, {
+        "name" : "conf.dataFormatConfig.rateLimit",
+        "value" : "-1"
       } ],
       "uiInfo" : {
         "yPos" : 109.18644714355469,
@@ -358,6 +387,9 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "fieldAttributeConfigs",
+        "value" : [ ]
       } ],
       "uiInfo" : {
         "description" : "",
@@ -372,7 +404,7 @@
     }, {
       "instanceName" : "SparkEvaluator_01",
       "library" : "streamsets-datacollector-cdh_5_9-lib",
-      "stageName" : "com_streamsets_pipeline_stage_processor_spark_StandaloneSparkDProcessor",
+      "stageName" : "com_streamsets_pipeline_stage_processor_spark_SparkDProcessor",
       "stageVersion" : "1",
       "configuration" : [ {
         "name" : "sparkProcessorConfigBean.threadCount",
@@ -446,7 +478,7 @@
       "stageVersion" : "4",
       "configuration" : [ {
         "name" : "hdfsTargetConfigBean.hdfsUri",
-        "value" : "hdfs://localhost:9000"
+        "value" : "hdfs://node-1.cluster"
       }, {
         "name" : "hdfsTargetConfigBean.hdfsUser",
         "value" : null
@@ -470,7 +502,7 @@
         "value" : false
       }, {
         "name" : "hdfsTargetConfigBean.dirPathTemplate",
-        "value" : "/sdc/taxi"
+        "value" : "/user/root/taxi"
       }, {
         "name" : "hdfsTargetConfigBean.timeZoneID",
         "value" : "UTC"
@@ -621,6 +653,9 @@
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
+      }, {
+        "name" : "hdfsTargetConfigBean.skipOldTempFileRecovery",
+        "value" : false
       } ],
       "uiInfo" : {
         "description" : "",
@@ -651,18 +686,20 @@
       "eventLanes" : [ ]
     },
     "info" : {
-      "name" : "Spark Taxi Transactions",
+      "pipelineId" : "Spark Sample",
+      "title" : "Spark Taxi Transactions",
       "description" : "This pipeline writes taxi transaction data to Wave Analytics",
-      "created" : 1480632218766,
-      "lastModified" : 1480966633586,
+      "created" : 1494069382458,
+      "lastModified" : 1494076269955,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "071c5c0b-0da9-4760-8300-79f96f4aaf05",
+      "uuid" : "e8dd484d-0d8d-4868-8287-e2bf62b4cb39",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
-      }
+      },
+      "name" : "Spark Sample"
     },
     "metadata" : {
       "labels" : [ ]
@@ -684,15 +721,17 @@
       "outputLanes" : [ ],
       "eventLanes" : [ ]
     },
-    "previewable" : true,
+    "valid" : true,
     "issues" : {
-      "pipelineIssues" : [ ],
+      "issueCount" : 0,
       "stageIssues" : { },
-      "issueCount" : 0
+      "pipelineIssues" : [ ]
     },
-    "valid" : true
+    "previewable" : true
   },
   "pipelineRules" : {
+    "schemaVersion" : 0,
+    "version" : 0,
     "metricsRuleDefinitions" : [ {
       "id" : "badRecordsAlertID",
       "alertText" : "High incidence of Error Records",
@@ -702,7 +741,7 @@
       "condition" : "${value() > 100}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1480377099851,
+      "timestamp" : 0,
       "valid" : true
     }, {
       "id" : "stageErrorAlertID",
@@ -713,7 +752,7 @@
       "condition" : "${value() > 100}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1480377099851,
+      "timestamp" : 0,
       "valid" : true
     }, {
       "id" : "idleGaugeID",
@@ -724,7 +763,7 @@
       "condition" : "${time:now() - value() > 120000}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1480377099851,
+      "timestamp" : 0,
       "valid" : true
     }, {
       "id" : "batchTimeAlertID",
@@ -735,7 +774,7 @@
       "condition" : "${value() > 200}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1480377099851,
+      "timestamp" : 0,
       "valid" : true
     }, {
       "id" : "memoryLimitAlertID",
@@ -746,13 +785,17 @@
       "condition" : "${value() > (jvm:maxMemoryMB() * 0.65)}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1480377099851,
+      "timestamp" : 0,
       "valid" : true
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "4c4431d2-cfdd-426e-bbb5-63ccc64102e2",
+    "uuid" : "250e98ca-0323-4031-9ee7-29d8b4c36066",
+    "configuration" : [ {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    } ],
     "ruleIssues" : [ ]
   },
   "libraryDefinitions" : null
