@@ -8,9 +8,9 @@ Create Droplet:
 - At that point click "create" and the system provisioning will begin
 
 
-Can monitor setup by logging in as `root@<IP ADDR>` and running 
+Can monitor setup by logging in as `root@<IP ADDR>`  with password str3ams3ts and running 
 `tail -f /var/log/cloud-init-output.log`
-- Will take a good 15mins or so to run through the process
+- Will take a good 15-30 mins or so to run through the process
 - Note that the [ubuntu-bootstrap.sh](ubuntu-bootstrap.sh) script is being run as well, which installs:
   * Redis
   * MySQL & drivers
@@ -28,3 +28,5 @@ Can monitor setup by logging in as `root@<IP ADDR>` and running
   * Consider having students create a few pipelines first 
   * Later they can run this to import the pipelines 
   * Note that the pipeline JSONs are in the [samples folder](samples)
+- Cloudera manager is accessible at http://<IP ADDR>:32769 as admin/admin
+- Hue is accessible at http://<IP ADDR>:32768 as hue/hue
