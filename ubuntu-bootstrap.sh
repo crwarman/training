@@ -33,6 +33,8 @@ sudo apt-get install -y python-pip libmysqlclient-dev python-dev
 
 sudo pip install --upgrade pip
 
+sudo pip install shortid
+
 sudo apt-get -y install vim
 
 # install redis
