@@ -33,6 +33,8 @@ sudo apt-get install -y python-pip libmysqlclient-dev python-dev
 
 sudo pip install --upgrade pip
 
+sudo pip install shortid
+
 sudo apt-get -y install vim
 
 # install redis
@@ -109,12 +111,15 @@ sudo dpkg -i kibana-5.0.1-amd64.deb
 sudo systemctl enable kibana.service
 sudo systemctl start kibana.service
 
-#download and extract StreamSets
+#download and extract SDC
 wget https://archives.streamsets.com/datacollector/2.5.0.0/tarball/streamsets-datacollector-all-2.5.0.0.tgz
 tar xvzf streamsets-datacollector-all-2.5.0.0.tgz
 
-#install jdbc drivers to sdc
+#install jdbc drivers to SDC
 ./install_jdbc_drivers.sh
+
+#install Spark transformer example jar to SDC
+cp ~/training/samples/spark-transformer-example/target/spark-transformer-example-1.0-SNAPSHOT.jar ~/training/streamsets-datacollector-2.5.0.0/streamsets-libs/streamsets-datacollector-cdh_5_9-lib/lib
 
 #download fake log generator
 git clone https://github.com/kiritbasu/Fake-Apache-Log-Generator.git
