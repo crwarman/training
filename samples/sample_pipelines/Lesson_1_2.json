@@ -5,7 +5,7 @@
     "pipelineId" : "DEMO_Lesson_1_2",
     "title" : "DEMO_Lesson_1_2",
     "description" : "",
-    "uuid" : "b7c5827d-80cf-4b5d-9597-c7c9234e7f4d",
+    "uuid" : "b983e50f-bc8e-42e2-9977-93ba63bb560f",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -106,7 +106,7 @@
         "value" : "CSV"
       }, {
         "name" : "conf.dataFormatConfig.csvHeader",
-        "value" : "NO_HEADER"
+        "value" : "WITH_HEADER"
       }, {
         "name" : "conf.dataFormatConfig.csvMaxObjectLen",
         "value" : 1024
@@ -187,10 +187,10 @@
         "value" : 1024
       }, {
         "name" : "conf.dataFormat",
-        "value" : "JSON"
+        "value" : "DELIMITED"
       }, {
         "name" : "conf.spoolDir",
-        "value" : "/root/training/samples/data/lesson1/"
+        "value" : "/root/training/samples/data/"
       }, {
         "name" : "conf.allowLateDirectory",
         "value" : false
@@ -208,7 +208,7 @@
         "value" : "LEXICOGRAPHICAL"
       }, {
         "name" : "conf.filePattern",
-        "value" : "*.json"
+        "value" : "*.csv"
       }, {
         "name" : "conf.maxSpoolFiles",
         "value" : 1000
@@ -329,10 +329,10 @@
       "configuration" : [ {
         "name" : "fieldTypeConverterConfigs",
         "value" : [ {
-          "fields" : [ "/birthday" ],
-          "targetType" : "DATE",
+          "fields" : [ "/pickup_datetime" ],
+          "targetType" : "DATETIME",
           "dataLocale" : "en,US",
-          "dateFormat" : "OTHER",
+          "dateFormat" : "YYYY_MM_DD_HH_MM_SS",
           "otherDateFormat" : "MM/dd/yyyy"
         } ]
       }, {
@@ -340,7 +340,7 @@
         "value" : "TO_ERROR"
       }, {
         "name" : "stageRequiredFields",
-        "value" : [ "/birthday" ]
+        "value" : [ ]
       }, {
         "name" : "stageRecordPreconditions",
         "value" : [ ]
@@ -399,12 +399,12 @@
       "pipelineId" : "DEMO_Lesson_1_2",
       "title" : "DEMO_Lesson_1_2",
       "description" : "",
-      "created" : 1494069357232,
-      "lastModified" : 1494070027818,
+      "created" : 1494179723672,
+      "lastModified" : 1494183098960,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "b7c5827d-80cf-4b5d-9597-c7c9234e7f4d",
+      "uuid" : "b983e50f-bc8e-42e2-9977-93ba63bb560f",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
@@ -433,8 +433,8 @@
     },
     "valid" : true,
     "issues" : {
-      "issueCount" : 0,
       "stageIssues" : { },
+      "issueCount" : 0,
       "pipelineIssues" : [ ]
     },
     "previewable" : true
@@ -501,7 +501,7 @@
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "1e817bb4-b32f-4a7d-9e7e-9dacf7f62004",
+    "uuid" : "75fd3423-9f91-4672-8614-8a9c8bc5ec09",
     "configuration" : null,
     "ruleIssues" : [ ]
   },

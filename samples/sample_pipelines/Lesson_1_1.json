@@ -5,7 +5,7 @@
     "pipelineId" : "DEMO_Lesson_1",
     "title" : "DEMO_Lesson_1_1",
     "description" : "",
-    "uuid" : "6a0e3f08-e1c2-4fcd-bc55-037e05b7818b",
+    "uuid" : "643c7c39-8e55-4f43-9401-70a3c2d272de",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -106,7 +106,7 @@
         "value" : "CSV"
       }, {
         "name" : "conf.dataFormatConfig.csvHeader",
-        "value" : "NO_HEADER"
+        "value" : "WITH_HEADER"
       }, {
         "name" : "conf.dataFormatConfig.csvMaxObjectLen",
         "value" : 1024
@@ -187,10 +187,10 @@
         "value" : 1024
       }, {
         "name" : "conf.dataFormat",
-        "value" : "JSON"
+        "value" : "DELIMITED"
       }, {
         "name" : "conf.spoolDir",
-        "value" : "/root/training/samples/data/lesson1/"
+        "value" : "/root/training/samples/data/"
       }, {
         "name" : "conf.allowLateDirectory",
         "value" : false
@@ -208,7 +208,7 @@
         "value" : "LEXICOGRAPHICAL"
       }, {
         "name" : "conf.filePattern",
-        "value" : "lesson1-1.json"
+        "value" : "*.csv"
       }, {
         "name" : "conf.maxSpoolFiles",
         "value" : 1000
@@ -359,12 +359,12 @@
       "pipelineId" : "DEMO_Lesson_1_1",
       "title" : "DEMO_Lesson_1_1",
       "description" : "",
-      "created" : 1494069274699,
-      "lastModified" : 1494069568419,
+      "created" : 1494179718882,
+      "lastModified" : 1494182263452,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "6a0e3f08-e1c2-4fcd-bc55-037e05b7818b",
+      "uuid" : "643c7c39-8e55-4f43-9401-70a3c2d272de",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
@@ -393,8 +393,8 @@
     },
     "valid" : true,
     "issues" : {
-      "issueCount" : 0,
       "stageIssues" : { },
+      "issueCount" : 0,
       "pipelineIssues" : [ ]
     },
     "previewable" : true
@@ -461,11 +461,8 @@
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "cbc7c9f3-399e-4eaf-be97-8b1e54a2fb3b",
-    "configuration" : [ {
-      "name" : "webhookConfigs",
-      "value" : [ ]
-    } ],
+    "uuid" : "a4ec1212-921e-4d74-88b3-b26a3246f276",
+    "configuration" : null,
     "ruleIssues" : [ ]
   },
   "libraryDefinitions" : null
