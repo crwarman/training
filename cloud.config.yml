@@ -12,8 +12,9 @@ runcmd:
   - cd training
   - chmod 744 *.sh
   - sudo sh -c "ulimit -H -n 64000 && ulimit -n 40000 && /root/training/ubuntu-bootstrap.sh"
-  #copy Hive config files
   - ./copy_hive_conf.sh
+  # Uncomment to import sample SDC pipelines
+  # - ./importsamples.sh
   #validate
   - ./testinstall.sh
 final_message: "Built in $UPTIME seconds - Test using ~/training/testinstall.sh"
