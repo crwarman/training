@@ -28,6 +28,7 @@ Can monitor setup by logging in as `root@<IP ADDR>`  with password str3ams3ts an
   * Consider having students create a few pipelines first 
   * Later they can run this to import the pipelines 
   * Note that the pipeline JSONs are in the [samples folder](samples)
+- SDC is accessible at `http://<IP ADDR>:18630` as admin/admin
 - Cloudera manager is accessible at `http://<IP ADDR>:32769` as admin/admin
 - Hue is accessible at `http://<IP ADDR>:32768` as hue/hue
 - MySQL and Postgres are accessible as root/password
