@@ -30,3 +30,4 @@ Can monitor setup by logging in as `root@<IP ADDR>`  with password str3ams3ts an
   * Note that the pipeline JSONs are in the [samples folder](samples)
 - Cloudera manager is accessible at `http://<IP ADDR>:32769` as admin/admin
 - Hue is accessible at `http://<IP ADDR>:32768` as hue/hue
+- MySQL and Postgres are accessible as root/password
