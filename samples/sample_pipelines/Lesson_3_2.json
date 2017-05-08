@@ -1,9 +1,11 @@
 {
   "pipelineConfig" : {
-    "schemaVersion" : 1,
-    "version" : 5,
-    "uuid" : "a95c094d-d388-494c-99aa-7545038bd18d",
+    "schemaVersion" : 3,
+    "version" : 6,
+    "pipelineId" : "Lesson_3_2",
+    "title" : "DEMO_Lesson_3_2",
     "description" : "",
+    "uuid" : "0f6fe48b-f9a9-45a5-8c91-b6aed9394fa9",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -55,6 +57,12 @@
     }, {
       "name" : "rateLimit",
       "value" : 0
+    }, {
+      "name" : "webhookConfigs",
+      "value" : [ ]
+    }, {
+      "name" : "maxRunners",
+      "value" : 0
     } ],
     "uiInfo" : {
       "previewConfig" : {
@@ -71,34 +79,22 @@
       "instanceName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01",
       "library" : "streamsets-datacollector-jdbc-lib",
       "stageName" : "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource",
-      "stageVersion" : "7",
+      "stageVersion" : "9",
       "configuration" : [ {
         "name" : "isIncrementalMode",
         "value" : true
       }, {
         "name" : "query",
-        "value" : "select * from zipcode where id > ${OFFSET} ORDER BY id"
+        "value" : "SELECT * FROM a_orders WHERE order_id > ${OFFSET} ORDER BY order_id"
       }, {
         "name" : "initialOffset",
         "value" : "1"
       }, {
         "name" : "offsetColumn",
-        "value" : "id"
-      }, {
-        "name" : "queryInterval",
-        "value" : "${10 * SECONDS}"
+        "value" : "order_id"
       }, {
         "name" : "jdbcRecordType",
         "value" : "LIST_MAP"
-      }, {
-        "name" : "maxBatchSize",
-        "value" : 1000
-      }, {
-        "name" : "maxClobSize",
-        "value" : 1000
-      }, {
-        "name" : "maxBlobSize",
-        "value" : 1000
       }, {
         "name" : "txnIdColumnName",
         "value" : null
@@ -107,7 +103,7 @@
         "value" : 10000
       }, {
         "name" : "hikariConfigBean.connectionString",
-        "value" : "jdbc:mysql://localhost:3306/streamsetsdemo"
+        "value" : "jdbc:mysql://localhost:3306/training"
       }, {
         "name" : "hikariConfigBean.useCredentials",
         "value" : true
@@ -153,16 +149,41 @@
       }, {
         "name" : "stageOnRecordError",
         "value" : "TO_ERROR"
+      }, {
+        "name" : "commonSourceConfigBean.queryInterval",
+        "value" : "${10 * SECONDS}"
+      }, {
+        "name" : "commonSourceConfigBean.maxBatchSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.maxClobSize",
+        "value" : 1000
+      }, {
+        "name" : "commonSourceConfigBean.maxBlobSize",
+        "value" : 1000
+      }, {
+        "name" : "disableValidation",
+        "value" : false
+      }, {
+        "name" : "commonSourceConfigBean.numSQLErrorRetries",
+        "value" : 0
+      }, {
+        "name" : "hikariConfigBean.autoCommit",
+        "value" : false
+      }, {
+        "name" : "hikariConfigBean.transactionIsolation",
+        "value" : "DEFAULT"
       } ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 116,
         "xPos" : 80,
-        "description" : "",
-        "stageType" : "SOURCE",
-        "label" : "JDBC Consumer 1"
+        "label" : "JDBC Consumer 1",
+        "stageType" : "SOURCE"
       },
       "inputLanes" : [ ],
-      "outputLanes" : [ "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01OutputLane14695943210790" ]
+      "outputLanes" : [ "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01OutputLane14695943210790" ],
+      "eventLanes" : [ ]
     }, {
       "instanceName" : "com_streamsets_pipeline_stage_destination_devnull_NullDTarget_01",
       "library" : "streamsets-datacollector-basic-lib",
@@ -170,14 +191,15 @@
       "stageVersion" : "1",
       "configuration" : [ ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 116,
         "xPos" : 300,
-        "description" : "",
-        "stageType" : "TARGET",
-        "label" : "Trash 1"
+        "label" : "Trash 1",
+        "stageType" : "TARGET"
       },
       "inputLanes" : [ "com_streamsets_pipeline_stage_origin_jdbc_JdbcDSource_01OutputLane14695943210790" ],
-      "outputLanes" : [ ]
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
     } ],
     "errorStage" : {
       "instanceName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget_ErrorStage",
@@ -186,28 +208,31 @@
       "stageVersion" : "1",
       "configuration" : [ ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 520,
-        "description" : "",
-        "stageType" : "TARGET",
-        "label" : "Error Records - Discard"
+        "label" : "Error Records - Discard",
+        "stageType" : "TARGET"
       },
       "inputLanes" : [ ],
-      "outputLanes" : [ ]
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
     },
     "info" : {
-      "name" : "Lesson_3_2",
+      "pipelineId" : "DEMO_Lesson_3_2",
+      "title" : "DEMO_Lesson_3_2",
       "description" : "",
-      "created" : 1469594286060,
-      "lastModified" : 1469594434823,
+      "created" : 1494179741250,
+      "lastModified" : 1494202157040,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "a95c094d-d388-494c-99aa-7545038bd18d",
+      "uuid" : "0f6fe48b-f9a9-45a5-8c91-b6aed9394fa9",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
-      }
+      },
+      "name" : "DEMO_Lesson_3_2"
     },
     "metadata" : {
       "labels" : [ ]
@@ -219,24 +244,27 @@
       "stageVersion" : "1",
       "configuration" : [ ],
       "uiInfo" : {
+        "description" : "",
         "yPos" : 50,
         "xPos" : 280,
-        "description" : "",
-        "stageType" : "TARGET",
-        "label" : "Stats Aggregator - Discard"
+        "label" : "Stats Aggregator - Discard",
+        "stageType" : "TARGET"
       },
       "inputLanes" : [ ],
-      "outputLanes" : [ ]
+      "outputLanes" : [ ],
+      "eventLanes" : [ ]
     },
-    "previewable" : true,
     "valid" : true,
     "issues" : {
+      "stageIssues" : { },
       "issueCount" : 0,
-      "pipelineIssues" : [ ],
-      "stageIssues" : { }
-    }
+      "pipelineIssues" : [ ]
+    },
+    "previewable" : true
   },
   "pipelineRules" : {
+    "schemaVersion" : 0,
+    "version" : 0,
     "metricsRuleDefinitions" : [ {
       "id" : "badRecordsAlertID",
       "alertText" : "High incidence of Error Records",
@@ -246,7 +274,7 @@
       "condition" : "${value() > 100}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1469594286083,
+      "timestamp" : 0,
       "valid" : true
     }, {
       "id" : "stageErrorAlertID",
@@ -257,7 +285,7 @@
       "condition" : "${value() > 100}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1469594286083,
+      "timestamp" : 0,
       "valid" : true
     }, {
       "id" : "idleGaugeID",
@@ -268,7 +296,7 @@
       "condition" : "${time:now() - value() > 120000}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1469594286083,
+      "timestamp" : 0,
       "valid" : true
     }, {
       "id" : "batchTimeAlertID",
@@ -279,7 +307,7 @@
       "condition" : "${value() > 200}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1469594286083,
+      "timestamp" : 0,
       "valid" : true
     }, {
       "id" : "memoryLimitAlertID",
@@ -290,13 +318,14 @@
       "condition" : "${value() > (jvm:maxMemoryMB() * 0.65)}",
       "sendEmail" : false,
       "enabled" : false,
-      "timestamp" : 1469594286083,
+      "timestamp" : 0,
       "valid" : true
     } ],
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "0bbe2d7d-3e6a-4d68-9cd6-5a93b700557d",
+    "uuid" : "0162eabc-ab7f-4551-8344-67c12eb02daa",
+    "configuration" : null,
     "ruleIssues" : [ ]
   },
   "libraryDefinitions" : null
