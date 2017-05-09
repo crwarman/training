@@ -2,10 +2,10 @@
   "pipelineConfig" : {
     "schemaVersion" : 3,
     "version" : 6,
-    "pipelineId" : "DEMOLesson3668157798-e96b-4628-b9bd-9f38119f6650",
-    "title" : "DEMO_Lesson_3_6",
+    "pipelineId" : "DEMOLesson38Consumerf314a6cc-1d45-4151-94eb-d1e675d92fe6",
+    "title" : "DEMO_Lesson_3_8_Consumer",
     "description" : "",
-    "uuid" : "807416bf-c2a0-4738-a8dc-cde4fff53ccc",
+    "uuid" : "4281354b-a5d6-4d5e-af29-5ef702ab583c",
     "configuration" : [ {
       "name" : "executionMode",
       "value" : "STANDALONE"
@@ -76,120 +76,48 @@
       }
     },
     "stages" : [ {
-      "instanceName" : "JDBCMultitableConsumer_01",
-      "library" : "streamsets-datacollector-jdbc-lib",
-      "stageName" : "com_streamsets_pipeline_stage_origin_jdbc_table_TableJdbcDSource",
-      "stageVersion" : "2",
+      "instanceName" : "SDCRPC_01",
+      "library" : "streamsets-datacollector-basic-lib",
+      "stageName" : "com_streamsets_pipeline_stage_origin_sdcipc_SdcIpcDSource",
+      "stageVersion" : "1",
       "configuration" : [ {
-        "name" : "tableJdbcConfigBean.tableConfigs",
-        "value" : [ {
-          "tablePattern" : "%",
-          "overrideDefaultOffsetColumns" : false,
-          "offsetColumns" : [ ],
-          "offsetColumnToInitialOffsetValue" : [ ],
-          "schema" : "training"
-        } ]
+        "name" : "configs.port",
+        "value" : 20000
       }, {
-        "name" : "tableJdbcConfigBean.numberOfThreads",
-        "value" : 1
+        "name" : "configs.appId",
+        "value" : "db_data"
       }, {
-        "name" : "tableJdbcConfigBean.batchTableStrategy",
-        "value" : "SWITCH_TABLES"
+        "name" : "configs.maxWaitTimeSecs",
+        "value" : 5
       }, {
-        "name" : "tableJdbcConfigBean.numberOfBatchesFromRs",
-        "value" : -1
-      }, {
-        "name" : "tableJdbcConfigBean.resultCacheSize",
-        "value" : -1
-      }, {
-        "name" : "tableJdbcConfigBean.timeZoneID",
-        "value" : "UTC"
-      }, {
-        "name" : "tableJdbcConfigBean.quoteChar",
-        "value" : "NONE"
-      }, {
-        "name" : "tableJdbcConfigBean.tableOrderStrategy",
-        "value" : "NONE"
-      }, {
-        "name" : "tableJdbcConfigBean.fetchSize",
-        "value" : 1000
-      }, {
-        "name" : "commonSourceConfigBean.queryInterval",
-        "value" : "${10 * SECONDS}"
-      }, {
-        "name" : "commonSourceConfigBean.maxBatchSize",
-        "value" : 1000
-      }, {
-        "name" : "commonSourceConfigBean.maxClobSize",
-        "value" : 1000
-      }, {
-        "name" : "commonSourceConfigBean.maxBlobSize",
-        "value" : 1000
-      }, {
-        "name" : "commonSourceConfigBean.numSQLErrorRetries",
-        "value" : 0
-      }, {
-        "name" : "hikariConfigBean.connectionString",
-        "value" : "jdbc:mysql://localhost:3306/training"
-      }, {
-        "name" : "hikariConfigBean.useCredentials",
-        "value" : true
-      }, {
-        "name" : "hikariConfigBean.username",
-        "value" : "root"
-      }, {
-        "name" : "hikariConfigBean.password",
-        "value" : "password"
-      }, {
-        "name" : "hikariConfigBean.driverProperties",
-        "value" : [ ]
-      }, {
-        "name" : "hikariConfigBean.driverClassName",
-        "value" : null
-      }, {
-        "name" : "hikariConfigBean.connectionTestQuery",
-        "value" : null
-      }, {
-        "name" : "hikariConfigBean.maximumPoolSize",
-        "value" : 1
-      }, {
-        "name" : "hikariConfigBean.minIdle",
-        "value" : 1
-      }, {
-        "name" : "hikariConfigBean.connectionTimeout",
-        "value" : "${30 * SECONDS}"
-      }, {
-        "name" : "hikariConfigBean.idleTimeout",
-        "value" : "${10 * MINUTES}"
-      }, {
-        "name" : "hikariConfigBean.maxLifetime",
-        "value" : "${30 * MINUTES}"
-      }, {
-        "name" : "hikariConfigBean.autoCommit",
+        "name" : "configs.sslEnabled",
         "value" : false
       }, {
-        "name" : "hikariConfigBean.readOnly",
-        "value" : true
+        "name" : "configs.keyStoreFile",
+        "value" : null
       }, {
-        "name" : "hikariConfigBean.transactionIsolation",
-        "value" : "DEFAULT"
+        "name" : "configs.keyStorePassword",
+        "value" : null
+      }, {
+        "name" : "configs.maxRecordSize",
+        "value" : 10
       }, {
         "name" : "stageOnRecordError",
         "value" : "TO_ERROR"
       } ],
       "uiInfo" : {
         "description" : "",
-        "label" : "JDBC Multitable Consumer 1",
+        "label" : "SDC RPC 1",
         "xPos" : 60,
         "yPos" : 50,
         "stageType" : "SOURCE"
       },
       "inputLanes" : [ ],
-      "outputLanes" : [ "JDBCMultitableConsumer_01OutputLane14943250949950" ],
+      "outputLanes" : [ "SDCRPC_01OutputLane14943429991870" ],
       "eventLanes" : [ ]
     }, {
       "instanceName" : "HiveMetadata_01",
-      "library" : "streamsets-datacollector-cdh_5_8-lib",
+      "library" : "streamsets-datacollector-cdh_5_7-lib",
       "stageName" : "com_streamsets_pipeline_stage_processor_hive_HiveMetadataDProcessor",
       "stageVersion" : "1",
       "configuration" : [ {
@@ -255,12 +183,12 @@
         "xPos" : 280,
         "label" : "Hive Metadata"
       },
-      "inputLanes" : [ "JDBCMultitableConsumer_01OutputLane14943250949950" ],
+      "inputLanes" : [ "SDCRPC_01OutputLane14943429991870" ],
       "outputLanes" : [ "HiveMetadata_01OutputLane14796897945470", "HiveMetadata_01OutputLane14796897945471" ],
       "eventLanes" : [ ]
     }, {
       "instanceName" : "HadoopFS_02",
-      "library" : "streamsets-datacollector-cdh_5_8-lib",
+      "library" : "streamsets-datacollector-cdh_5_7-lib",
       "stageName" : "com_streamsets_pipeline_stage_destination_hdfs_HdfsDTarget",
       "stageVersion" : "4",
       "configuration" : [ {
@@ -286,7 +214,7 @@
         "value" : null
       }, {
         "name" : "hdfsTargetConfigBean.dirPathTemplateInHeader",
-        "value" : true
+        "value" : false
       }, {
         "name" : "hdfsTargetConfigBean.dirPathTemplate",
         "value" : "/tmp/out/${YYYY()}-${MM()}-${DD()}-${hh()}"
@@ -337,10 +265,10 @@
         "value" : "/tmp/late/${YYYY()}-${MM()}-${DD()}"
       }, {
         "name" : "hdfsTargetConfigBean.dataFormat",
-        "value" : "AVRO"
+        "value" : "TEXT"
       }, {
         "name" : "hdfsTargetConfigBean.hdfsPermissionCheck",
-        "value" : false
+        "value" : true
       }, {
         "name" : "hdfsTargetConfigBean.permissionEL",
         "value" : null
@@ -385,7 +313,7 @@
         "value" : false
       }, {
         "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchemaSource",
-        "value" : "HEADER"
+        "value" : null
       }, {
         "name" : "hdfsTargetConfigBean.dataGeneratorFormatConfig.avroSchema",
         "value" : null
@@ -456,7 +384,7 @@
       "eventLanes" : [ ]
     }, {
       "instanceName" : "HiveMetastore_02",
-      "library" : "streamsets-datacollector-cdh_5_8-lib",
+      "library" : "streamsets-datacollector-cdh_5_7-lib",
       "stageName" : "com_streamsets_pipeline_stage_destination_hive_HiveMetastoreDTarget",
       "stageVersion" : "1",
       "configuration" : [ {
@@ -525,20 +453,20 @@
       "eventLanes" : [ ]
     },
     "info" : {
-      "pipelineId" : "DEMOLesson3668157798-e96b-4628-b9bd-9f38119f6650",
-      "title" : "DEMO_Lesson_3_6",
+      "pipelineId" : "DEMOLesson38Consumerf314a6cc-1d45-4151-94eb-d1e675d92fe6",
+      "title" : "DEMO_Lesson_3_8_Consumer",
       "description" : "",
-      "created" : 1494324989749,
-      "lastModified" : 1494366682542,
+      "created" : 1494342980899,
+      "lastModified" : 1494343014084,
       "creator" : "admin",
       "lastModifier" : "admin",
       "lastRev" : "0",
-      "uuid" : "807416bf-c2a0-4738-a8dc-cde4fff53ccc",
+      "uuid" : "4281354b-a5d6-4d5e-af29-5ef702ab583c",
       "valid" : true,
       "metadata" : {
         "labels" : [ ]
       },
-      "name" : "DEMOLesson3668157798-e96b-4628-b9bd-9f38119f6650"
+      "name" : "DEMOLesson38Consumerf314a6cc-1d45-4151-94eb-d1e675d92fe6"
     },
     "metadata" : {
       "labels" : [ ]
@@ -630,7 +558,7 @@
     "dataRuleDefinitions" : [ ],
     "driftRuleDefinitions" : [ ],
     "emailIds" : [ ],
-    "uuid" : "c3f20d51-5319-4148-821d-be4cfbf22091",
+    "uuid" : "a80b5d9c-4b0a-43e2-8399-053d0296c27c",
     "configuration" : [ {
       "name" : "webhookConfigs",
       "value" : [ ]
