@@ -12,3 +12,7 @@ $SDC/streamsets cli -U http://localhost:18630 store import -n "DEMO_Lesson_3_5" 
 $SDC/streamsets cli -U http://localhost:18630 store import -n "DEMO_Lesson_3_6" -f $SAMPLE_PIPELINES/Lesson_3_6.json
 $SDC/streamsets cli -U http://localhost:18630 store import -n "DEMO_Lesson_3_7_Producer" -f $SAMPLE_PIPELINES/Lesson_3_7_Producer.json
 $SDC/streamsets cli -U http://localhost:18630 store import -n "DEMO_Lesson_3_7_Consumer" -f $SAMPLE_PIPELINES/Lesson_3_7_Consumer.json
+$SDC/streamsets cli -U http://localhost:18630 store import -n "DEMO_Lesson_3_8_Producer" -f $SAMPLE_PIPELINES/Lesson_3_8_Producer.json
+$SDC/streamsets cli -U http://localhost:18630 store import -n "DEMO_Lesson_3_8_Consumer" -f $SAMPLE_PIPELINES/Lesson_3_8_Consumer.json
+$SDC/streamsets cli -U http://localhost:18630 store import -n "DEMO_Lesson_4_1" -f $SAMPLE_PIPELINES/Lesson_4_1.json
+$SDC/streamsets cli -U http://localhost:18630 store import -n "DEMO_Lesson_4_2" -f $SAMPLE_PIPELINES/Lesson_4_2.json
