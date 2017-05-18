@@ -134,5 +134,5 @@ sudo nohup /root/training/streamsets-datacollector-2.5.0.0/bin/streamsets dc &
 curl -sSL https://get.docker.com/ | sh
 
 #install cdh
-source /dev/stdin <<< "$(curl -sL http://tiny.cloudera.com/clusterdock.sh)"
+source /dev/stdin <<< "$(curl -sL https://raw.githubusercontent.com/clusterdock/framework/master/clusterdock.sh)"
 clusterdock_run ./bin/start_cluster cdh
